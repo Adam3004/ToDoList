@@ -11,5 +11,8 @@ class User:
         self.points += amount
         print("Points added")
 
+    def add_task(self, name, date):
+        self.list.add(name, date)
+
     def __str__(self):
         return self.name
