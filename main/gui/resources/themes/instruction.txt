@@ -1,0 +1,9 @@
+Every theme should be added in this directory as a folder containing 13 images in png format.
+11 images:
+themename_2.png
+themename_4.png
+...
+themename_2048.png
+and 2 more:
+themename_empty.png
+themename_uk.png
