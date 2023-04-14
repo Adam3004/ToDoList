@@ -1,4 +1,4 @@
-from .list import ToDoList
+from .toDoList import ToDoList
 
 
 class User:

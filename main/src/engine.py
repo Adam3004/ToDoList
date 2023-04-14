@@ -1,5 +1,5 @@
 from toDoList.user import User
-
+from main.gui.listController import runGui
 
 if __name__ == '__main__':
     user1 = User("Kuba")
@@ -9,3 +9,5 @@ if __name__ == '__main__':
     user1.list.complete_task("tak1")
     print(user1.list)
     print(f'Points: {user1.points}')
+    runGui()
+
