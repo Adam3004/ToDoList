@@ -1,15 +1,21 @@
 from datetime import datetime
+import itertools
+
 
 class Task:
-    def __init__(self, name: str, deadline):
-        self.name = name
-        self.is_done = False
-        self.deadline = datetime.strptime(deadline, '%d/%m/%y %H:%M')
-        self.points = 5
+    newid = itertools.count()
 
-    def fulfill_task(self):
+    def __init__(self, name: str, deadline, isDone: bool = False, pointsAmount: int = 5):
+        self.id = next(self.newid)
+        self.name = name
+        self.is_done = isDone
+        self.deadline = datetime.strptime(deadline, '%Y-%m-%d %H:%M:%S')
+        self.points = pointsAmount
+
+
+    def complete_task(self) -> None:
         self.is_done = True
         print(f'Task {self.name} is completed')
 
     def __str__(self):
-        return f"Name: {self.name}, is done {self.is_done}, deadline until {self.deadline}"
+        return f"ID: {self.id}, name: {self.name}, is done {self.is_done}, deadline until {self.deadline}, points: {self.points}"
