@@ -1,0 +1,47 @@
+<Label>:
+    font_size: 16
+    color: (0,0,0,1)
+
+<GameWindow>:
+    canvas.before:
+        Color:
+            rgb: (0.557, 0.678, 0.863)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                text: 'TO DO'
+                font_size: 32
+                size_hint: None, None
+                size: 100, 70
+                background_normal:''
+                background_color: (0.208, 0.373, 0.616,1)
+                on_press: root.back_todo()
+            Widget
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+                padding: [0,0,20,0]
+                size_hint: None, None
+                size: 100, 70
+                Label:
+                    id: points_cnt
+                    font_size: 32
+                    text: '20'
+                BoxLayout:
+                    Image:
+                        source: '../gui/resources/icons/point.png'
+                        size: self.parent.size
+        Label:
+            text: '2048'
+            font_size: 40
+            bold: True
+        Label:
+            text: 'Use w,a,s,d to move.'
+        BoxLayout
