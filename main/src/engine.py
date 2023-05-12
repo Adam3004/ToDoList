@@ -1,5 +1,6 @@
 from toDoList.user import User
-from main.gui.listController import runGui
+#from main.gui.listController import runGui
+from main.gui.gameController import runGui
 from toDoList.toDoList import Task
 from main.src.utils.reader import read_list_for_user
 from main.src.utils.writer import write
@@ -19,3 +20,4 @@ if __name__ == '__main__':
     write(user1)
     runGui(user1)
     print(user1.list)
+
