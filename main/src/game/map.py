@@ -1,9 +1,9 @@
-from block import GameBlock
+from main.src.game.block import GameBlock
 from random import sample
-from direction import Direction
+from main.src.game.direction import Direction
 
 class GameMap:
-    def __init__(self, theme=None):
+    def __init__(self, theme="default"):
         self.theme=theme
         self.blocks=[[None for _ in range (4)] for i in range (4)]
         self.empty_fields = 16
@@ -106,15 +106,6 @@ class GameMap:
 
     def get_pic_path(self, x, y):
         if self.is_empty(y,x):
-            return self.theme+'empty.png'
+            return "../../main/gui/resources/themes/"+self.theme+"/"+self.theme+'empty.png'
         else:
-            return self.theme+'block'+self.blocks[y][x].path_sufix()+'.png'
-
-gm=GameMap()
-print(gm)
-gm.move(Direction.UP)
-print(gm)
-gm.move(Direction.LEFT)
-print(gm)
-gm.move(Direction.RIGHT)
-print(gm)
+            return "../../main/gui/resources/themes/"+self.theme+"/"+self.theme+self.blocks[y][x].path_sufix()+'.png'
