@@ -42,6 +42,13 @@
             text: '2048'
             font_size: 40
             bold: True
+        GridLayout:
+            id: grid
+            pos_hint: {'x': .25}
+            cols:4
+            rows:4
+            size: 380,380
+            size_hint_y: None
+            size_hint_x: None
         Label:
-            text: 'Use w,a,s,d to move.'
-        BoxLayout
+            text: 'use w, s, a, d to play'
