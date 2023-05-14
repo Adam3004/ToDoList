@@ -64,6 +64,7 @@ class GameMap:
             new = [[self.blocks[3-r][c] for c in range(4)] for r in range(4)]
             self.blocks = new
         def make_move_up():
+            moved=False
             to_add = [0 for _ in range(4)]
             for r in range(1, 4):
                 for c in range(4):
@@ -73,6 +74,7 @@ class GameMap:
                         else:
                             self.merge((to_add[c], c), (r, c))
                             to_add[c] = r
+                            moved=True
             to_move = [0 for _ in range(4)]
             for r in range(4):
                 for c in range(4):
@@ -80,26 +82,28 @@ class GameMap:
                         if to_move[c]!=r:
                             self.blocks[to_move[c]][c] = self.blocks[r][c]
                             self.blocks[r][c] = None
+                            moved=True
                         to_move[c] += 1
+            return moved
 
-
+        moved=False
         if direction==Direction.UP:
-            make_move_up()
+            moved=make_move_up()
         elif direction == Direction.DOWN:
             change_order()
-            make_move_up()
+            moved=make_move_up()
             change_order()
         elif direction == Direction.LEFT:
             transpose()
-            make_move_up()
+            moved=make_move_up()
             transpose()
         else:
             transpose()
             change_order()
-            make_move_up()
+            moved=make_move_up()
             change_order()
             transpose()
-        self.get_random()
+        if moved: self.get_random()
 
     def change_theme(self, new_theme):
         self.theme=new_theme
