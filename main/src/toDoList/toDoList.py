@@ -1,4 +1,4 @@
-from .task import Task
+from main.src.toDoList.task import Task
 from typing import Dict, Optional
 
 
@@ -29,8 +29,8 @@ class ToDoList:
             print("task was removed")
         print("task not found, so cannot be removed")
 
-    def complete_task(self, name: str) -> None:
-        task = self.get_task(name)
+    def complete_task(self, id: int) -> None:
+        task = self.get_task(id)
         if task is not None:
             task.complete_task()
         else:

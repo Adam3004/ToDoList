@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="139736dd-4bcf-4507-a08a-ad5f94ebbd3e" name="Changes" comment="" />
+    <list default="true" id="7c505711-d141-46ab-85e6-0879e25554e0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/main/src/resources/toDoLists/user1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/listController.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/listController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/list_window.kv" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/list_window.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/toDoList/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/toDoList/task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/toDoList/toDoList.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/toDoList/toDoList.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utils/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utils/reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/toDoLists/user1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/resources/toDoLists/user1.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,20 +44,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Ola/OneDrive/studia/python/ToDoList",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ola\OneDrive\studia\python\ToDoList\main\gui" />
@@ -55,18 +54,17 @@
   </component>
   <component name="RunManager" selected="Python.engine">
     <configuration name="engine" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ToDoList" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Ola\OneDrive\studia\python\ToDoList\venv\Scripts\python.exe" />
-      <option name="SDK_NAME" value="Python 3.10 (ToDoList)" />
+      <option name="SDK_HOME" value="D:\nauka\Uczelnia\4sem\python\ToDoList\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/src/engine.py" />
       <option name="PARAMETERS" value="" />
@@ -195,9 +193,5 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ToDoList$engine.coverage" NAME="engine Coverage Results" MODIFIED="1684095284194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ToDoList$listController.coverage" NAME="listController Coverage Results" MODIFIED="1684086468166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/gui" />
   </component>
 </project>
