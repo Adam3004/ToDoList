@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="139736dd-4bcf-4507-a08a-ad5f94ebbd3e" name="Changes" comment="" />
+    <list default="true" id="139736dd-4bcf-4507-a08a-ad5f94ebbd3e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_1024.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_1024.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_128.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_128.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_16.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_2048.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_2048.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_256.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_256.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_32.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_32.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_512.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_64.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_64.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/default_uk.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/default_uk.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/default/defaultempty.png" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/resources/themes/default/defaultempty.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_1024.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_2048.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/default_uk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/gui/resources/themes/x/defaultempty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/game/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/game/map.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,15 +65,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Ola/OneDrive/studia/python/ToDoList",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -55,21 +80,20 @@
   </component>
   <component name="RunManager" selected="Python.engine">
     <configuration name="engine" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="toDoList" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Ola\OneDrive\studia\python\ToDoList\venv\Scripts\python.exe" />
-      <option name="SDK_NAME" value="Python 3.10 (ToDoList)" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/src/engine.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="$FilePath$" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -173,7 +197,9 @@
       <workItem from="1684083930907" duration="61000" />
       <workItem from="1684083992809" duration="28000" />
       <workItem from="1684084021962" duration="2465000" />
-      <workItem from="1684087303541" duration="7414000" />
+      <workItem from="1684087303541" duration="7861000" />
+      <workItem from="1684095962862" duration="185000" />
+      <workItem from="1685039663567" duration="1111000" />
     </task>
     <servers />
   </component>
@@ -197,7 +223,6 @@
     </ignored-roots>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ToDoList$engine.coverage" NAME="engine Coverage Results" MODIFIED="1684095284194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ToDoList$listController.coverage" NAME="listController Coverage Results" MODIFIED="1684086468166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/gui" />
+    <SUITE FILE_PATH="coverage/ToDoList$engine.coverage" NAME="engine Coverage Results" MODIFIED="1685041408591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
