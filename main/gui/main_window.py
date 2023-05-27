@@ -10,6 +10,10 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.image import Image
+from main.src.game.direction import Direction
+from main.src.toDoList.user import User
+from main.src.game.constants import GameConstants
+from kivy.properties import StringProperty, ObjectProperty
 from kivy.properties import StringProperty
 
 from main.src.game.direction import Direction
@@ -87,6 +91,9 @@ def canPlay(user: User) -> bool:
 class GameWindow(Screen):
     info=StringProperty('use w, s, a, d to play')
     instructions=StringProperty('Beat 2048 to win!')
+    points_cost = StringProperty(str(GameConstants().theme_cost))
+    points_cnt = StringProperty("0")
+    theme_to_change="default"
     def __init__(self, **kwargs):
         super(GameWindow, self).__init__(**kwargs)
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
@@ -94,6 +101,11 @@ class GameWindow(Screen):
 
     def on_kv_post(self, base_widget):
         self.render_gameview()
+        self.ids.spinner_id.values=GameConstants().themes_available
+        self.update_points()
+
+    def on_enter(self):
+        self.update_points()
 
     def _keyboard_closed(self):
         print('Keyboard have been closed!')
@@ -130,6 +142,25 @@ class GameWindow(Screen):
         self.ids.grid.clear_widgets()
         for i in range(16):
             self.ids.grid.add_widget(Image(source=user.game.get_pic_path(i % 4, i // 4)))
+    def spinner_clicked(self, value):
+        self.ids.spinner_id.text = value
+        self.update_change_theme_button(value)
+
+    def update_points(self):
+        self.points_cnt = str(user.points)
+
+    def update_change_theme_button(self, theme):
+        if not user.can_change_theme(theme):
+            self.ids.change_button.background_color=(0.078, 0.106, 0.169,1)
+        else:
+            self.ids.change_button.background_color = (0.208, 0.373, 0.616, 1)
+    def change_theme(self):
+        theme=self.ids.spinner_id.text
+        if user.can_change_theme(theme):
+            user.change_theme(theme)
+        self.update_points()
+        self.update_change_theme_button(theme)
+        self.render_gameview()
 
 class WindowManager(ScreenManager):
     pass
