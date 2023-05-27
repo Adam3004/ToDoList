@@ -93,49 +93,57 @@ WindowManager:
             pos: self.pos
             size: self.size
 
-    Screen:
-
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
         BoxLayout:
-
-            orientation: 'vertical'
-            padding: 10
+            orientation: 'horizontal'
+            Button:
+                text: 'TO DO'
+                font_size: 32
+                size_hint: None, None
+                size: 100, 70
+                background_normal:''
+                background_color: (0.208, 0.373, 0.616,1)
+                on_release:
+                    app.root.current='list'
+            Widget
+            Button:
+                text: 'NEW GAME'
+                font_size: 32
+                size_hint: None, None
+                size: 200, 70
+                background_normal:''
+                background_color: (0.208, 0.373, 0.616,1)
+                on_release:
+                    root.new_game()
+            Widget
             BoxLayout:
                 orientation: 'horizontal'
-                Button:
-                    text: 'TO DO'
+                spacing: 10
+                padding: [0,0,20,0]
+                size_hint: None, None
+                size: 100, 70
+                Label:
+                    id: points_cnt
                     font_size: 32
-                    size_hint: None, None
-                    size: 100, 70
-                    background_normal:''
-                    background_color: (0.208, 0.373, 0.616,1)
-                    on_release:
-                        app.root.current='list'
-                Widget
+                    text: '20'
                 BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: 10
-                    padding: [0,0,20,0]
-                    size_hint: None, None
-                    size: 100, 70
-                    Label:
-                        id: points_cnt
-                        font_size: 32
-                        text: '20'
-                    BoxLayout:
-                        Image:
-                            source: '../gui/resources/icons/point.png'
-                            size: self.parent.size
-            Label:
-                text: '2048'
-                font_size: 40
-                bold: True
-            GridLayout:
-                id: grid
-                pos_hint: {'x': .25}
-                cols:4
-                rows:4
-                size: 380,380
-                size_hint_y: None
-                size_hint_x: None
-            Label:
-                text: 'use w, s, a, d to play'
+                    Image:
+                        source: '../gui/resources/icons/point.png'
+                        size: self.parent.size
+        Label:
+            text: root.instructions
+            font_size: 32
+            bold: True
+        GridLayout:
+            id: grid
+            pos_hint: {'x': .25}
+            cols:4
+            rows:4
+            size: 380,380
+            size_hint_y: None
+            size_hint_x: None
+        Label:
+            text: root.info
+            font_size: 24

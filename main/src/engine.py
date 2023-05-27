@@ -4,6 +4,7 @@ from toDoList.toDoList import Task
 from main.src.utils.reader import read_list_for_user
 from main.src.utils.writer import write
 
+
 if __name__ == '__main__':
     user1 = User("Kuba")
     user1.add_task("tak1", '2023-05-12 12:30:00')
