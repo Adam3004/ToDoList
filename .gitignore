@@ -1,6 +1,7 @@
 # Project exclude paths
 /venv/
 __pycache__/
+/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -152,3 +153,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+.idea/
+.vscode/
