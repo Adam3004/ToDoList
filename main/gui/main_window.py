@@ -10,12 +10,8 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.image import Image
-from main.src.game.direction import Direction
-from main.src.toDoList.user import User
-from main.src.game.constants import GameConstants
-from kivy.properties import StringProperty, ObjectProperty
 from kivy.properties import StringProperty
-
+from main.src.game.constants import GameConstants
 from main.src.game.direction import Direction
 from main.src.toDoList.user import User
 
@@ -32,18 +28,23 @@ def check_date(date: str) -> bool:
                     return datetime.strptime(date, '%Y-%m-%d %H:%M:%S') > datetime.now()
     return False
 
+
 class ListWindow(Screen):
-    toPrint = StringProperty()
+    toPrint: str = StringProperty()
+    userPoints: str = StringProperty()
 
     def __init__(self, **kwargs):
         super(ListWindow, self).__init__(**kwargs)
-        self.toPrint = printList(user, False)
+        self.toPrint: str = printList(user, False)
+        self.taskStatus: bool = False
+        self.userPoints: str = str(user.points)
 
     def play_2048(self):
         print(f'Play 2048')
 
     def view_history(self):
-        print(printList(user, True))
+        self.taskStatus = not self.taskStatus
+        self.toPrint = printList(user, self.taskStatus)
 
     def add_task(self, name: str, date: str):
         user.list.add(name, date)
@@ -54,13 +55,18 @@ class ListWindow(Screen):
         print('Buy item')
 
     def complete_task(self, task_id, task_not_found):
-        if int(task_id.text) < 0 or not user.list.complete_task(int(task_id.text)):
+        if int(task_id.text) < 0 or not user.list.get_task(int(task_id.text)):
             task_not_found.text = 'task not found'
+        elif user.list.get_task(int(task_id.text)).is_done:
+            task_not_found.text = 'task is already done'
         else:
+            user.list.complete_task(int(task_id.text))
             task_not_found.text = ''
-            self.toPrint = printList(user, False)
+            self.toPrint = printList(user, True)
+            user.add_points(user.list.get_task(int(task_id.text)).points)
+            self.userPoints: str = str(user.points)
 
-    def check_status(self, name, date, warning):
+    def prepare_task(self, name, date, warning):
         if len(name.text) == 0:
             warning.text = 'Name field cannot be empty'
         elif len(date.text) == 0 or not check_date(date.text):
@@ -89,6 +95,9 @@ def canPlay(user: User) -> bool:
 
 
 class GameWindow(Screen):
+    info = StringProperty('use w, s, a, d to play')
+    instructions = StringProperty('Beat 2048 to win!')
+
     info=StringProperty('use w, s, a, d to play')
     instructions=StringProperty('Beat 2048 to win!')
     points_cost = StringProperty(str(GameConstants().theme_cost))
@@ -126,10 +135,10 @@ class GameWindow(Screen):
                 return
             self.render_gameview()
         if user.game.won():
-            self.instructions='CONGRATULATIONS! You won!!!'
+            self.instructions = 'CONGRATULATIONS! You won!!!'
             self.info = ''
         elif user.game.lost():
-            self.instructions='You have lost :(( Try again'
+            self.instructions = 'You have lost :(( Try again'
             self.info = ''
 
     def new_game(self):
@@ -162,8 +171,10 @@ class GameWindow(Screen):
         self.update_change_theme_button(theme)
         self.render_gameview()
 
+
 class WindowManager(ScreenManager):
     pass
+
 
 class ToDo2048App(App):
     def build(self):
