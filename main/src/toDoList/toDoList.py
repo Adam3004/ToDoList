@@ -29,12 +29,14 @@ class ToDoList:
             print("task was removed")
         print("task not found, so cannot be removed")
 
-    def complete_task(self, id: int) -> None:
+    def complete_task(self, id: int) -> bool:
         task = self.get_task(id)
         if task is not None:
             task.complete_task()
+            return True
         else:
             print("Task not found, so cannot be completed")
+            return False
 
     def __str__(self):
         output = ""
