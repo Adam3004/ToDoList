@@ -1,7 +1,9 @@
 import csv
 import os
-from main.src.toDoList.user import User
+
 from main.src.toDoList.task import Task
+from main.src.toDoList.user import User
+
 
 
 def read_list_for_user(user: User) -> None:

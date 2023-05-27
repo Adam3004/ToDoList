@@ -4,6 +4,7 @@ import itertools
 
 class Task:
     newid = itertools.count()
+    a = print("x")
 
     def __init__(self, name: str, deadline, isDone: bool = False, pointsAmount: int = 5):
         self.id = next(self.newid)
@@ -11,7 +12,6 @@ class Task:
         self.is_done = isDone
         self.deadline = datetime.strptime(deadline, '%Y-%m-%d %H:%M:%S')
         self.points = pointsAmount
-
 
     def complete_task(self) -> None:
         self.is_done = True
