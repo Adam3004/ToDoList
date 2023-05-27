@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="139736dd-4bcf-4507-a08a-ad5f94ebbd3e" name="Changes" comment="tmp changes">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="139736dd-4bcf-4507-a08a-ad5f94ebbd3e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/gui/listController.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/listController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/gui/list_window.kv" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/list_window.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/gui/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/main_window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/gui/window_manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/main/gui/window_manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/game/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/game/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/game/map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/toDoList/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/toDoList/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +289,7 @@
       <workItem from="1684087303541" duration="7861000" />
       <workItem from="1684095962862" duration="185000" />
       <workItem from="1685039663567" duration="1757000" />
-      <workItem from="1685206970631" duration="5232000" />
+      <workItem from="1685206970631" duration="9456000" />
     </task>
     <servers />
   </component>
@@ -311,5 +312,9 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ToDoList$main_window.coverage" NAME="main_window Coverage Results" MODIFIED="1685210310542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/gui" />
+    <SUITE FILE_PATH="coverage/ToDoList$engine.coverage" NAME="engine Coverage Results" MODIFIED="1685216325245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
