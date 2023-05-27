@@ -3,7 +3,7 @@ from random import sample
 from main.src.game.direction import Direction
 
 class GameMap:
-    def __init__(self, theme="cats"):
+    def __init__(self, theme="default"):
         self.theme=theme
         self.blocks=[[None for _ in range (4)] for i in range (4)]
         self.empty_fields = 16
