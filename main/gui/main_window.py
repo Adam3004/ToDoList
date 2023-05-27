@@ -1,4 +1,8 @@
+import re
+from datetime import datetime
+
 from kivy.config import Config
+
 Config.set('graphics', 'resizable', '0')
 
 from kivy.app import App
@@ -6,22 +10,30 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.image import Image
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.widget import Widget
+from kivy.properties import StringProperty
+
 from main.src.game.direction import Direction
-from main.src.game.map import GameMap
 from main.src.toDoList.user import User
-from kivy.properties import StringProperty, ObjectProperty
-import time
+
+
+def check_date(date: str) -> bool:
+    x = re.match("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-5][0-9]:[0-5][0-9]$", date)
+    if x:
+        splited = date.split("-")
+        if int(splited[1]) <= 12:
+            splited = splited[2].split(" ")
+            if int(splited[0]) <= 31:
+                splited = splited[0].split(":")
+                if int(splited[0]) <= 24:
+                    return datetime.strptime(date, '%Y-%m-%d %H:%M:%S') > datetime.now()
+    return False
 
 class ListWindow(Screen):
     toPrint = StringProperty()
-    txt_inpt = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(ListWindow, self).__init__(**kwargs)
         self.toPrint = printList(user, False)
-        self.txt_inpt = ''
 
     def play_2048(self):
         print(f'Play 2048')
@@ -29,22 +41,30 @@ class ListWindow(Screen):
     def view_history(self):
         print(printList(user, True))
 
-    def add_task(self):
-        user.list.add("task2", "2023-04-13 12:30:00")
+    def add_task(self, name: str, date: str):
+        user.list.add(name, date)
         self.toPrint = printList(user, False)
         print('Add task')
 
     def buy_item(self):
         print('Buy item')
 
+    def complete_task(self, task_id, task_not_found):
+        if int(task_id.text) < 0 or not user.list.complete_task(int(task_id.text)):
+            task_not_found.text = 'task not found'
+        else:
+            task_not_found.text = ''
+            self.toPrint = printList(user, False)
+
     def check_status(self, name, date, warning):
-        print(f'text input text is: {name.text}, date {date.text}')
         if len(name.text) == 0:
             warning.text = 'Name field cannot be empty'
-        elif len(date.text) == 0:
+        elif len(date.text) == 0 or not check_date(date.text):
             warning.text = 'Wrong data format! \nyyyy-mm-dd hh:mm:ss'
         else:
+            print(f'text input text is: {name.text}, date {date.text}')
             warning.text = ''
+            self.add_task(name.text, date.text)
 
 
 def printList(user: User, is_done: bool) -> str:
@@ -55,6 +75,13 @@ def printList(user: User, is_done: bool) -> str:
             output += str(elem.name)
             output += "\n"
     return output
+
+
+def canPlay(user: User) -> bool:
+    for elem in user.list.tasks.values():
+        if not elem.is_done:
+            return False
+    return True
 
 
 class GameWindow(Screen):
