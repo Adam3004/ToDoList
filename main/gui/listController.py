@@ -1,18 +1,21 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, ObjectProperty
 from kivy.uix.widget import Widget
+from kivy.core.window import Window
 from main.src.toDoList.user import User
 import time
 
 
 class ListWindow(BoxLayout):
     toPrint = StringProperty()
+    txt_inpt = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(ListWindow, self).__init__(**kwargs)
         self.toPrint = printList(user, False)
+        self.txt_inpt = ''
 
     def play_2048(self):
         print(f'Play 2048')
@@ -27,6 +30,12 @@ class ListWindow(BoxLayout):
 
     def buy_item(self):
         print('Buy item')
+
+
+    def check_status(self, input):
+        print('text input text is: {txt}'.format(txt=input.text))
+
+
 
 
 def printList(user: User, is_done: bool) -> str:

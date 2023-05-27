@@ -17,7 +17,7 @@ if __name__ == '__main__':
     # print(user1.list)
     user1.list.complete_task(user1.list.get_task(0).id)
     print(user1.list)
-    write(user1)
+    # write(user1)
     # runGameGui()
     runGui(user1)
     print(user1.list)
