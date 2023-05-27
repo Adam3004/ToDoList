@@ -17,6 +17,8 @@ class ToDoList:
         return elem.id in self.tasks
 
     def get_task(self, id: int) -> Optional[Task]:
+        if not self.tasks.keys().__contains__(id):
+            return None
         foundElem: Optional[Task] = self.tasks[id]
         if foundElem is not None:
             return foundElem
