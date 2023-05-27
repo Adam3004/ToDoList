@@ -44,10 +44,67 @@ WindowManager:
                     Image:
                         source: '../gui/resources/icons/point.png'
                         size: self.parent.size
-        Label:
-            text: 'TO DO'
-            font_size: 40
-            bold: True
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            padding: [390,-300,0,0]
+            size_hint: None, None
+            size: 100, 70
+            Label:
+                text: 'TO DO'
+                font_size: 40
+                bold: True
+        BoxLayout:
+            orientation: 'vertical'
+            title: 'InputDialog'
+            auto_dismiss: False
+            padding: [300,-150,300,-20]
+            id: test1
+            BoxLayout:
+                spacing: 10
+                orientation: 'vertical'
+                pos: self.pos
+                size: root.size
+                id: test2
+                padding: [0,0,0,0]
+                name: name
+                date: date
+                warning: warning
+                Label:
+                    text: 'Name'
+                    font_size: 20
+                    bold: True
+                TextInput:
+                    id: name
+                    hint_text:'Enter text'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.705}
+                    size_hint: 0.95, 0.5
+                Label:
+                    text: 'Date'
+                    font_size: 20
+                    bold: True
+                TextInput:
+                    id: date
+                    hint_text:'Enter text'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.705}
+                    size_hint: 0.95, 0.5
+
+                Button:
+                    id: f_but
+                    size_hint: 0.6, 0.5
+                    pos_hint: {"x":.2, "top":1}
+                    text: 'Add task'
+                    background_normal:''
+                    background_color: (0.208, 0.373, 0.616,1)
+                    on_press: root.check_status(name, date, warning)
+                Label:
+                    id: warning
+                    text: warning.text
+                    font_size: 20
+                    bold: True
+                    color: (0.499, 0.073, 0.016,1)
+
         ScrollView:
             do_scroll_x: False
             do_scroll_y: True
