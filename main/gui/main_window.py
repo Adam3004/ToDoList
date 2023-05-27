@@ -11,7 +11,7 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.image import Image
 from kivy.properties import StringProperty
-
+from main.src.game.constants import GameConstants
 from main.src.game.direction import Direction
 from main.src.toDoList.user import User
 
