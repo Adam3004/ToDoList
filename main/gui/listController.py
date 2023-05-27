@@ -32,8 +32,8 @@ class ListWindow(BoxLayout):
         print('Buy item')
 
 
-    def check_status(self, input):
-        print('text input text is: {txt}'.format(txt=input.text))
+    def check_status(self, name, date):
+        print(f'text input text is: {name.text}, date {date.text}')
 
 
 
