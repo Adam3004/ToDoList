@@ -3,12 +3,15 @@ from random import sample
 from main.src.game.direction import Direction
 
 class GameMap:
-    def __init__(self, theme="cats"):
+    def __init__(self, theme="default"):
         self.theme=theme
-        self.blocks=[[None for _ in range (4)] for i in range (4)]
+        self.new_game()
+
+    def new_game(self):
+        self.blocks = [[None for _ in range(4)] for i in range(4)]
         self.empty_fields = 16
         self.get_random_init2()
-        self.max_val=2
+        self.max_val = 2
 
     def place (self, x,y):
         self.blocks[x][y] = GameBlock()
@@ -42,7 +45,23 @@ class GameMap:
         return self.max_val>=2048
 
     def lost(self):
-        return self.empty_fields==0
+        if self.empty_fields!=0: return False
+        for x in range(4):
+            for y in range(4):
+                if self.can_make_move(x,y):
+                    return False
+        return True
+
+    def can_make_move(self, x, y):
+        if x - 1 >= 0 and self.blocks[x][y] == self.blocks[x - 1][y]:
+            return True
+        elif x + 1 < 4 and self.blocks[x][y] == self.blocks[x + 1][y]:
+            return True
+        elif y - 1 >= 0 and self.blocks[x][y] == self.blocks[x][y - 1]:
+            return True
+        elif y + 1 < 4 and self.blocks[x][y] == self.blocks[x][y + 1]:
+            return True
+        return False
 
     def is_empty(self, r, c):
         return self.blocks[r][c] is None
@@ -113,3 +132,5 @@ class GameMap:
             return "../../main/gui/resources/themes/"+self.theme+"/"+self.theme+'empty.png'
         else:
             return "../../main/gui/resources/themes/"+self.theme+"/"+self.theme+self.blocks[y][x].path_sufix()+'.png'
+
+
