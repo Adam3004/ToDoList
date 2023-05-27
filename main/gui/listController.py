@@ -38,6 +38,6 @@ def runGui(guser: User):
     Builder.load_file("../gui/list_window.kv")
     global user
     user = guser
-    x:ListApp = ListApp()
+    x = ListApp()
     x.build()
     x.run()
