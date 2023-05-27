@@ -29,6 +29,7 @@ WindowManager:
                 on_release:
                     app.root.current='game'
 
+
             Widget
             BoxLayout:
                 orientation: 'horizontal'
@@ -151,19 +152,20 @@ WindowManager:
             size: self.size
 
     BoxLayout:
-        orientation: 'vertical'
+        orientation: 'horizontal'
         padding: 10
         BoxLayout:
-            orientation: 'horizontal'
+            orientation: 'vertical'
             Button:
                 text: 'TO DO'
                 font_size: 32
                 size_hint: None, None
-                size: 100, 70
+                size: 200, 70
                 background_normal:''
                 background_color: (0.208, 0.373, 0.616,1)
                 on_release:
                     app.root.current='list'
+
             Widget
             Button:
                 text: 'NEW GAME'
@@ -175,6 +177,10 @@ WindowManager:
                 on_release:
                     root.new_game()
             Widget
+            Label:
+                id: points_cnt
+                font_size: 20
+                text: 'You have:'
             BoxLayout:
                 orientation: 'horizontal'
                 spacing: 10
@@ -182,25 +188,68 @@ WindowManager:
                 size_hint: None, None
                 size: 100, 70
                 Label:
-                    id: points_cnt
                     font_size: 32
-                    text: '20'
+                    text: root.points_cnt
                 BoxLayout:
                     Image:
                         source: '../gui/resources/icons/point.png'
                         size: self.parent.size
-        Label:
-            text: root.instructions
-            font_size: 32
-            bold: True
-        GridLayout:
-            id: grid
-            pos_hint: {'x': .25}
-            cols:4
-            rows:4
-            size: 380,380
-            size_hint_y: None
-            size_hint_x: None
-        Label:
-            text: root.info
-            font_size: 24
+            Label:
+                font_size: 20
+                text: 'Change theme for:'
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+                padding: [0,0,20,0]
+                size_hint: None, None
+                size: 100, 70
+                Label:
+                    font_size: 32
+                    text: root.points_cost
+                BoxLayout:
+                    Image:
+                        source: '../gui/resources/icons/point.png'
+                        size: self.parent.size
+            Widget
+            BoxLayout:
+                orientation: "vertical"
+            Spinner:
+                id: spinner_id
+                text: "choose theme"
+                font_size: 20
+                size: 200, 70
+                size_hint: None, None
+                background_normal:''
+                background_color: (0.627, 0.537, 0,1)
+                on_text: root.spinner_clicked(spinner_id.text)
+            Button:
+                id: change_button
+                text: 'CHANGE'
+                font_size: 32
+                size_hint: None, None
+                size: 200, 70
+                background_normal:''
+                background_color: (0.078, 0.106, 0.169,1)
+                on_release:
+                    root.change_theme()
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: root.instructions
+                font_size: 32
+                bold: True
+            GridLayout:
+                id: grid
+#                pos_hint: {'x': .25}
+                cols:4
+                rows:4
+                size: 380,380
+                size_hint_y: None
+                size_hint_x: None
+            Label:
+                text: root.info
+                font_size: 24
+
+
