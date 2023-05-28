@@ -9,7 +9,7 @@ WindowManager:
     name: "list"
     canvas.before:
         Color:
-            rgb: (0.557, 0.678, 0.863)
+            rgb: (0.471, 0.412, 0.506)
         Rectangle:
             pos: self.pos
             size: self.size
@@ -32,7 +32,7 @@ WindowManager:
                     size_hint: None, None
                     size: 200, 70
                     background_normal:''
-                    background_color: (0.208, 0.373, 0.616,1)
+                    background_color: (0.184, 0.192, 0.376,1)
                     on_release:
                         app.root.current='game'
                 Widget:
@@ -43,7 +43,7 @@ WindowManager:
                     font_size: 32
                     size_hint: None, None
                     background_normal:''
-                    background_color: (0.208, 0.373, 0.616,1)
+                    background_color: (0.282, 0.208, 0.322,1)
                     size: 200, 70
                     on_press: root.view_history()
             Widget:
@@ -71,7 +71,7 @@ WindowManager:
                     size: 200, 30
                     text: 'ADD NEW TASK'
                     background_normal:''
-                    background_color: (0.208, 0.373, 0.616,1)
+                    background_color: (0.282, 0.208, 0.322,1)
                     on_press: root.prepare_task(name, date, warning)
                 Widget:
                     size_hint: None, None
@@ -109,7 +109,7 @@ WindowManager:
                         size: 50,30
                         text: 'DONE'
                         background_normal:''
-                        background_color: (0.208, 0.573, 0.616,1)
+                        background_color: (0.282, 0.208, 0.322,1)
                         on_press: root.complete_task(task_id, task_not_found)
                 Label:
                     id: task_not_found
@@ -133,15 +133,22 @@ WindowManager:
                 font_size: 32
                 bold: True
             ScrollView:
+                canvas.before:
+                    Color:
+                        rgb: (0.58, 0.537, 0.604)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
                 do_scroll_x: False
                 do_scroll_y: True
                 bar_width: 10
                 size_hint: None, None
                 size: 460, 460
-                background_color: (0.208, 0.573, 0.616,1)
                 Label:
                     size_hint_y: None
+                    color: (0,0,0,1)
                     height: self.texture_size[1]
+                    font_size: 20
                     text_size: self.width, None
                     padding: 10, 10
                     text: root.toPrint
@@ -192,7 +199,7 @@ WindowManager:
     name: "game"
     canvas.before:
         Color:
-            rgb: (0.557, 0.678, 0.863)
+            rgb: (0.392, 0.400, 0.565)
         Rectangle:
             pos: self.pos
             size: self.size
@@ -211,7 +218,7 @@ WindowManager:
                 size_hint: None, None
                 size: 200, 70
                 background_normal:''
-                background_color: (0.208, 0.373, 0.616,1)
+                background_color: (0.282, 0.208, 0.322,1)
                 on_release:
                     app.root.current='list'
 
@@ -222,7 +229,7 @@ WindowManager:
                 size_hint: None, None
                 size: 200, 70
                 background_normal:''
-                background_color: (0.208, 0.373, 0.616,1)
+                background_color: (0.184, 0.192, 0.376,1)
                 on_release:
                     root.new_game()
             Widget
@@ -277,7 +284,7 @@ WindowManager:
                 size: 200, 70
                 size_hint: None, None
                 background_normal:''
-                background_color: (0.627, 0.537, 0,1)
+                background_color: (0.275, 0.282, 0.471,1)
                 on_text: root.spinner_clicked(spinner_id.text)
             Button:
                 id: change_button
@@ -287,7 +294,7 @@ WindowManager:
                 size: 200, 70
                 strikethrough: True
                 background_normal:''
-                background_color: (0.078, 0.106, 0.169,1)
+                background_color: (0.024, 0.024, 0.106,1)
                 on_release:
                     root.change_theme()
         Widget:
