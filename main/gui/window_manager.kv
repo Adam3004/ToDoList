@@ -13,89 +13,58 @@ WindowManager:
         Rectangle:
             pos: self.pos
             size: self.size
-
     BoxLayout:
-        orientation: 'vertical'
-        padding: 10
+        orientation: 'horizontal'
+        padding: 40
         BoxLayout:
-            orientation: 'horizontal'
+            orientation: 'vertical'
+            size_hint: None, None
+            size: 200, 500
             Button:
-                text: '2048'
+                text: 'PLAY 2048'
                 font_size: 32
                 size_hint: None, None
-                size: 100, 70
+                size: 200, 70
                 background_normal:''
                 background_color: (0.208, 0.373, 0.616,1)
                 on_release:
                     app.root.current='game'
-
-
+            Widget
+            Button:
+                text: 'HISTORY'
+                font_size: 32
+                size_hint: None, None
+                background_normal:''
+                background_color: (0.208, 0.373, 0.616,1)
+                size: 200, 70
+                on_press: root.view_history()
             Widget
             BoxLayout:
-                orientation: 'horizontal'
-                spacing: 10
-                padding: [0,0,20,0]
-                size_hint: None, None
-                size: 100, 70
-                Label:
-                    id: points_cnt
-                    font_size: 32
-                    text: root.userPoints
-                BoxLayout:
-                    Image:
-                        source: '../gui/resources/icons/point.png'
-                        size: self.parent.size
-
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 10
-            padding: [390,-260,0,0]
-            size_hint: None, None
-            size: 100, 70
-            Label:
-                text: 'TO DO'
-                font_size: 40
-                bold: True
-        BoxLayout:
-            orientation: 'vertical'
-            title: 'InputDialog'
-            auto_dismiss: False
-            padding: [300,-140,300,-120]
-            id: test1
-            BoxLayout:
-                spacing: 10
                 orientation: 'vertical'
-                pos: self.pos
-                size: root.size
-                id: test2
-                padding: [0,0,0,0]
+                title: 'InputDialog'
+                spacing: 10
                 name: name
                 date: date
-                warning: warning
+#                warning: warning
                 Label:
-                    text: 'Name'
+                    text: 'Add new task'
                     font_size: 20
                     bold: True
                 TextInput:
                     id: name
                     hint_text:'Enter name'
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.705}
-                    size_hint: 0.95, 0.7
-                Label:
-                    text: 'Date'
-                    font_size: 20
-                    bold: True
+                    size_hint: None, None
+                    size: 200,30
                 TextInput:
                     id: date
-                    hint_text:'Enter date'
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.705}
-                    size_hint: 0.95, 0.7
-
+                    hint_text:'Enter deadline'
+                    size_hint: None, None
+                    size: 200,30
                 Button:
                     id: f_but
-                    size_hint: 0.6, 0.5
-                    pos_hint: {"x":.2, "top":1}
-                    text: 'Add task'
+                    size_hint: None, None
+                    size: 200, 30
+                    text: 'ADD'
                     background_normal:''
                     background_color: (0.208, 0.373, 0.616,1)
                     on_press: root.prepare_task(name, date, warning)
@@ -105,77 +74,105 @@ WindowManager:
                     font_size: 20
                     bold: True
                     color: (0.499, 0.073, 0.016,1)
-
-        BoxLayout:
-            spacing: 10
-            padding: [280,80,0,-50]
-            size_hint: None, None
-            id: checkTaskBackG
-            orientation: 'vertical'
-            auto_dismiss: False
-            pos: self.pos
-            size: 500, 300
-            task_not_found: task_not_found
+            Widget
             Label:
                 text: 'Complete task'
-                font_size: 30
-                bold: True
-            TextInput:
-                id: task_id
-                hint_text:'Task id'
-                pos_hint: {'center_x': 0.5, 'center_y': 0.705}
-                size_hint: 0.95, 0.5
-            Button:
-                id: complete
-                size_hint: 0.6, 0.4
-                pos_hint: {"x":.2, "top":1}
-                text: 'Complete'
-                background_normal:''
-                background_color: (0.208, 0.573, 0.616,1)
-                on_press: root.complete_task(task_id, task_not_found)
-            Label:
-                id: task_not_found
-                text: task_not_found.text
                 font_size: 20
                 bold: True
-                color: (0.499, 0.073, 0.016,1)
-
-
-
-        ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            bar_width: 10
-            Label:
-                size_hint_y: None
-                height: self.texture_size[1]
-                text_size: self.width, None
-                padding: 10, 10
-                text: root.toPrint
+            BoxLayout:
+                size_hint: None, None
+                id: checkTaskBackG
+                orientation: 'vertical'
+#                auto_dismiss: False
+                task_not_found: task_not_found
+                BoxLayout:
+                    orientation: 'horizontal'
+                    TextInput:
+                        id: task_id
+                        hint_text:'Task id'
+                        size_hint: None, None
+                        size: 150,30
+                    Button:
+                        id: complete
+                        size_hint: None, None
+                        size: 50,30
+                        text: 'DONE'
+                        background_normal:''
+                        background_color: (0.208, 0.573, 0.616,1)
+                        on_press: root.complete_task(task_id, task_not_found)
+                Label:
+                    id: task_not_found
+                    text: task_not_found.text
+                    font_size: 20
+                    bold: True
+                    color: (0.499, 0.073, 0.016,1)
+        Widget:
+            size_hint: None, None
+            size: 60, 500
         BoxLayout:
-            orientation: "horizontal"
-            Button:
-                text: '+ add task'
+            orientation: 'vertical'
+#            spacing: 10
+#            size_hint: None, None
+#            size: 100, 70
+            Label:
+                text: 'Your TO DO list'
+                font_size: 32
+                bold: True
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                bar_width: 10
                 size_hint: None, None
-                background_normal:''
-                background_color: (1, 0.85, 0.17,1)
-                size: 100, 70
-            Widget
-            Button:
-                text: 'history'
-                size_hint: None, None
-                background_normal:''
-                background_color: (0.208, 0.373, 0.616,1)
-                size: 100, 70
-                on_press: root.view_history()
-            Widget
-            Button:
-                text: 'new theme'
-                size_hint: None, None
-                background_normal:''
-                background_color: (0.208, 0.373, 0.616,1)
-                size: 100, 70
-                on_press: root.buy_item()
+                size: 460, 460
+                background_color: (0.208, 0.573, 0.616,1)
+                Label:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    padding: 10, 10
+                    text: root.toPrint
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: "You have: "
+                    font_size: 20
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 10
+                        padding: [0,0,20,0]
+                        size_hint: None, None
+                        size: 100, 70
+                        Label:
+                            id: points_cnt
+                            font_size: 32
+                            text: root.userPoints
+                        BoxLayout:
+                            Image:
+                                source: '../gui/resources/icons/point.png'
+                                size: self.parent.size
+                Label:
+                    text: "Each task: "
+                    font_size: 20
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 10
+                        padding: [0,0,20,0]
+                        size_hint: None, None
+                        size: 100, 70
+                        Label:
+                            font_size: 32
+                            text: "5"
+                        BoxLayout:
+                            Image:
+                                source: '../gui/resources/icons/point.png'
+                                size: self.parent.size
+
 
 <GameWindow>:
     name: "game"
@@ -188,9 +185,11 @@ WindowManager:
 
     BoxLayout:
         orientation: 'horizontal'
-        padding: 10
+        padding: 40
         BoxLayout:
             orientation: 'vertical'
+            size_hint: None, None
+            size: 200, 500
             Button:
                 text: 'TO DO'
                 font_size: 32
@@ -213,38 +212,46 @@ WindowManager:
                     root.new_game()
             Widget
             Label:
-                id: points_cnt
                 font_size: 20
                 text: 'You have:'
-            BoxLayout:
-                orientation: 'horizontal'
-                spacing: 10
-                padding: [0,0,20,0]
-                size_hint: None, None
-                size: 100, 70
-                Label:
-                    font_size: 32
-                    text: root.points_cnt
+            Widget
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
                 BoxLayout:
-                    Image:
-                        source: '../gui/resources/icons/point.png'
-                        size: self.parent.size
+                    orientation: 'horizontal'
+                    spacing: 10
+                    padding: [0,0,20,0]
+                    size_hint: None, None
+                    size: 100, 70
+                    Label:
+                        font_size: 32
+                        text: root.points_cnt
+                    BoxLayout:
+                        Image:
+                            source: '../gui/resources/icons/point.png'
+                            size: self.parent.size
+            Widget
             Label:
                 font_size: 20
                 text: 'Change theme for:'
-            BoxLayout:
-                orientation: 'horizontal'
-                spacing: 10
-                padding: [0,0,20,0]
-                size_hint: None, None
-                size: 100, 70
-                Label:
-                    font_size: 32
-                    text: root.points_cost
+            Widget
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
                 BoxLayout:
-                    Image:
-                        source: '../gui/resources/icons/point.png'
-                        size: self.parent.size
+                    orientation: 'horizontal'
+                    spacing: 10
+                    padding: [0,0,20,0]
+                    size_hint: None, None
+                    size: 100, 70
+                    Label:
+                        font_size: 32
+                        text: root.points_cost
+                    BoxLayout:
+                        Image:
+                            source: '../gui/resources/icons/point.png'
+                            size: self.parent.size
             Widget
             BoxLayout:
                 orientation: "vertical"
@@ -263,12 +270,14 @@ WindowManager:
                 font_size: 32
                 size_hint: None, None
                 size: 200, 70
+                strikethrough: True
                 background_normal:''
                 background_color: (0.078, 0.106, 0.169,1)
                 on_release:
                     root.change_theme()
-
-
+        Widget:
+            size_hint: None, None
+            size: 60, 500
         BoxLayout:
             orientation: 'vertical'
             Label:
@@ -277,14 +286,12 @@ WindowManager:
                 bold: True
             GridLayout:
                 id: grid
-#                pos_hint: {'x': .25}
                 cols:4
                 rows:4
-                size: 380,380
-                size_hint_y: None
-                size_hint_x: None
+                size_hint: None, None
+                size: 460,460
             Label:
                 text: root.info
-                font_size: 24
+                font_size: 20
 
 
