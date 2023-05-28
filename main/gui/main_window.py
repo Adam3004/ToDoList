@@ -1,6 +1,8 @@
+from kivy.config import Config
+Config.set('graphics', 'resizable', '0')
+
 import re
 from datetime import datetime
-from kivy.config import Config
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -10,9 +12,6 @@ from kivy.properties import StringProperty
 from main.src.game.constants import GameConstants
 from main.src.game.direction import Direction
 from main.src.toDoList.user import User
-
-Config.set('graphics', 'resizable', '0')
-
 
 class ListWindow(Screen):
     toPrint: str = StringProperty()
