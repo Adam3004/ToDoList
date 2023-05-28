@@ -3,12 +3,20 @@ from random import sample
 from main.src.game.direction import Direction
 
 class GameMap:
-    def __init__(self, theme="default"):
+    def __init__(self, theme="default", blocks=None):
         self.theme=theme
-        self.empty_fields=-1
+        self.empty_fields=0
         self.max_val = -1
-        self.blocks=None
-        self.new_game()
+        self.blocks=blocks
+        if blocks is None:
+            self.new_game()
+        else:
+            for i in range(4):
+                for j in range(4):
+                    if blocks[i][j] is None:
+                        self.empty_fields+=1
+                    else:
+                        self.max_val=max(self.max_val, blocks[i][j].number)
 
     def new_game(self):
         self.blocks = [[None for _ in range(4)] for i in range(4)]
