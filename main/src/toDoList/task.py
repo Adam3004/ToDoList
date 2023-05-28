@@ -4,7 +4,6 @@ import itertools
 
 class Task:
     newid = itertools.count()
-    a = print("x")
 
     def __init__(self, name: str, deadline, isDone: bool = False, pointsAmount: int = 5):
         self.id = next(self.newid)
