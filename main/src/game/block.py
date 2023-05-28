@@ -1,6 +1,6 @@
 class GameBlock:
-    def __init__(self):
-        self.number=2
+    def __init__(self, number=2):
+        self.number=number
 
     def __str__(self):
         return f"[{self.number}]"

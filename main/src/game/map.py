@@ -5,6 +5,9 @@ from main.src.game.direction import Direction
 class GameMap:
     def __init__(self, theme="default"):
         self.theme=theme
+        self.empty_fields=-1
+        self.max_val = -1
+        self.blocks=None
         self.new_game()
 
     def new_game(self):

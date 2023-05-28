@@ -56,7 +56,7 @@ class ListWindow(Screen):
         elif int(task_id.text) < 0 or not user.list.get_task(int(task_id.text)):
             task_not_found.text = 'task not found'
         elif user.list.get_task(int(task_id.text)).is_done:
-            task_not_found.text = 'task is already done'
+            task_not_found.text = 'Task is already done'
         else:
             user.list.complete_task(int(task_id.text))
             task_not_found.text = ''
@@ -98,58 +98,60 @@ def printList(user: User, is_done: bool) -> str:
     return output
 
 
-def canPlay(user: User) -> bool:
-    for elem in user.list.tasks.values():
-        if not elem.is_done:
-            return False
-    return True
-
-
 class GameWindow(Screen):
-    info = StringProperty('use w, s, a, d to play')
-    instructions = StringProperty('Beat 2048 to win!')
+    info = StringProperty()
+    instructions = StringProperty()
     points_cost = StringProperty("0")
     points_cnt = StringProperty("0")
     theme_to_change = "default"
 
     def __init__(self, **kwargs):
         super(GameWindow, self).__init__(**kwargs)
-        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
-        self._keyboard.bind(on_key_down=self._on_keyboard_down)
+        Window.bind(on_key_down=self._on_keyboard_down)
 
     def on_kv_post(self, base_widget):
-        self._keyboard.bind(on_key_down=self._on_keyboard_down)
         self.render_gameview()
         self.ids.spinner_id.values = GameConstants().themes_available.keys()
         self.update_points()
 
     def on_enter(self):
         self.update_points()
+        Window.bind(on_key_down=self._on_keyboard_down)
+        if user.have_deadlines():
+            self.instructions = 'Complete tasks before!'
+            self.info = ''
+        else:
+            self.instructions = 'Beat 2048 to win!'
+            self.info = 'use w, s, a, d to play'
+    def on_leave(self):
+        Window.unbind(on_key_down=self._on_keyboard_down)
 
     def _keyboard_closed(self):
         print('Keyboard have been closed!')
-        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
-        self._keyboard = None
 
-    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
-        if not (user.game.won() or user.game.lost()):
-            if keycode[1] == 'w':
-                user.game.move(Direction.UP)
-            elif keycode[1] == 's':
-                user.game.move(Direction.DOWN)
-            elif keycode[1] == 'a':
-                user.game.move(Direction.LEFT)
-            elif keycode[1] == 'd':
-                user.game.move(Direction.RIGHT)
-            else:
-                return
-            self.render_gameview()
-        if user.game.won():
-            self.instructions = 'CONGRATULATIONS! You won!!!'
-            self.info = ''
-        elif user.game.lost():
-            self.instructions = 'You have lost :(( Try again'
-            self.info = ''
+
+    def _on_keyboard_down(self, window, key, scancode, keycode, modifiers):
+        if not user.have_deadlines():
+            if not (user.game.won() or user.game.lost()):
+                if keycode == 'w':
+                    user.game.move(Direction.UP)
+                elif keycode == 's':
+                    user.game.move(Direction.DOWN)
+                elif keycode == 'a':
+                    user.game.move(Direction.LEFT)
+                elif keycode == 'd':
+                    user.game.move(Direction.RIGHT)
+                else:
+                    return
+                self.render_gameview()
+            if user.game.won():
+                self.instructions = 'CONGRATULATIONS! You won!!!'
+                self.info = ''
+            elif user.game.lost():
+                self.instructions = 'You have lost :(( Try again'
+                self.info = ''
+        else:
+            self.instructions='Complete tasks before!'
 
     def new_game(self):
         self.instructions = 'Beat 2048 to win!'

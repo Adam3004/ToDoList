@@ -24,3 +24,9 @@ class User:
 
     def __str__(self):
         return self.name
+
+    def have_deadlines(self) -> bool:
+        for elem in self.list.tasks.values():
+            if not elem.is_done:
+                return True
+        return False
