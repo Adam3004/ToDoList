@@ -9,12 +9,12 @@ from toDoList.user import User
 from main.src.game.block import GameBlock
 
 if __name__ == '__main__':
-    l = []
-    theme = read_game_status(l)
-    game = GameMap(theme, l)
+    tmp_list = []
+    theme = read_game_status(tmp_list)
+    game = GameMap(theme, tmp_list)
     user1 = User("Kuba", game)
-    read_list_for_user(user1)
+    points: int = read_list_for_user(user1)
+    user1.points = points
     runGui(user1)
-    print(user1.list)
     write_game_status(user1.game.blocks, user1.game.theme)
     write_user(user1)
