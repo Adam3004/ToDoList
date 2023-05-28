@@ -20,87 +20,88 @@ WindowManager:
             orientation: 'vertical'
             size_hint: None, None
             size: 200, 500
-            Button:
-                text: 'PLAY 2048'
-                font_size: 32
-                size_hint: None, None
-                size: 200, 70
-                background_normal:''
-                background_color: (0.208, 0.373, 0.616,1)
-                on_release:
-                    app.root.current='game'
-            Widget
-            Button:
-                text: 'HISTORY'
-                font_size: 32
-                size_hint: None, None
-                background_normal:''
-                background_color: (0.208, 0.373, 0.616,1)
-                size: 200, 70
-                on_press: root.view_history()
-            Widget
             BoxLayout:
                 orientation: 'vertical'
-                title: 'InputDialog'
-                spacing: 10
-                name: name
-                date: date
-                warning: warning
-                TextInput:
-                    id: name
-                    hint_text:'Enter name'
-                    size_hint: None, None
-                    size: 200,30
-                TextInput:
-                    id: date
-                    hint_text:'Enter deadline'
-                    size_hint: None, None
-                    size: 200,30
+                size_hint: None, None
+                size: 200, 145
                 Button:
-                    id: f_but
+                    text: 'PLAY 2048'
+                    font_size: 32
                     size_hint: None, None
-                    size: 200, 30
-                    text: 'ADD NEW TASK'
+                    size: 200, 70
                     background_normal:''
                     background_color: (0.208, 0.373, 0.616,1)
-                    on_press: root.prepare_task(name, date, warning)
-                Label:
-                    id: warning
-                    text: warning.text
-                    font_size: 20
-                    bold: True
-                    color: (0.499, 0.073, 0.016,1)
-            Widget
-            Label:
-                text: 'Complete task'
-                font_size: 20
-                bold: True
-            BoxLayout:
-                size_hint: None, None
-                id: checkTaskBackG
-                orientation: 'vertical'
-                task_not_found: task_not_found
-                BoxLayout:
-                    orientation: 'horizontal'
-                    TextInput:
-                        id: task_id
-                        hint_text:'Task id'
-                        size_hint: None, None
-                        size: 150,30
-                    Button:
-                        id: complete
-                        size_hint: None, None
-                        size: 50,30
-                        text: 'DONE'
-                        background_normal:''
-                        background_color: (0.208, 0.573, 0.616,1)
-                        on_press: root.complete_task(task_id, task_not_found)
-                Label:
-                    id: task_not_found
-                    text: task_not_found.text
-                    font_size: 20
-                    bold: True
-                    color: (0.499, 0.073, 0.016,1)
+                    on_release:
+                        app.root.current='game'
+                Widget
+                Button:
+                    text: 'HISTORY'
+                    font_size: 32
+                    size_hint: None, None
+                    background_normal:''
+                    background_color: (0.208, 0.373, 0.616,1)
+                    size: 200, 70
+                    on_press: root.view_history()
+#            Widget
+#            BoxLayout:
+#                orientation: 'vertical'
+#                title: 'InputDialog'
+#                spacing: 10
+#                TextInput:
+#                    id: name
+#                    hint_text:'Enter name'
+#                    size_hint: None, None
+#                    size: 200,30
+#                TextInput:
+#                    id: date
+#                    hint_text:'Enter deadline'
+#                    size_hint: None, None
+#                    size: 200,30
+#                Button:
+#                    id: f_but
+#                    size_hint: None, None
+#                    size: 200, 30
+#                    text: 'ADD NEW TASK'
+#                    background_normal:''
+#                    background_color: (0.208, 0.373, 0.616,1)
+#                    on_press: root.prepare_task(name, date, warning)
+#                Label:
+#                    id: warning
+#                    text: warning.text
+#                    font_size: 16
+#                    bold: True
+#                    color: (0.499, 0.073, 0.016,1)
+#            Widget
+#            Label:
+#                text: 'Complete task'
+#                font_size: 20
+#                bold: True
+#            BoxLayout:
+#                size_hint: None, None
+#                id: checkTaskBackG
+#                orientation: 'vertical'
+#                task_not_found: task_not_found
+#                BoxLayout:
+#                    orientation: 'horizontal'
+#                    TextInput:
+#                        id: task_id
+#                        hint_text:'Task id'
+#                        size_hint: None, None
+#                        size: 150,30
+#                    Button:
+#                        id: complete
+#                        size_hint: None, None
+#                        size: 50,30
+#                        text: 'DONE'
+#                        background_normal:''
+#                        background_color: (0.208, 0.573, 0.616,1)
+#                        on_press: root.complete_task(task_id, task_not_found)
+#                Label:
+#                    id: task_not_found
+#                    text: task_not_found.text
+#                    font_size: 16
+#                    bold: True
+#                    color: (0.499, 0.073, 0.016,1)
         Widget:
             size_hint: None, None
             size: 60, 500
