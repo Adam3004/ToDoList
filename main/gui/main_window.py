@@ -175,10 +175,10 @@ class GameWindow(Screen):
     def update_change_theme_button(self, theme):
         button = self.ids.change_button
         if not user.can_change_theme(theme):
-            button.background_color = (0.078, 0.106, 0.169, 1)
+            button.background_color = (0.024, 0.024, 0.106,1)
             button.strikethrough = True
         else:
-            button.background_color = (0.208, 0.373, 0.616, 1)
+            button.background_color = (0.184, 0.192, 0.376,1)
             button.strikethrough = False
 
     def change_theme(self):
