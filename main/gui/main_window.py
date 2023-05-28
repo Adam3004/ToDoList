@@ -19,42 +19,56 @@ from main.src.toDoList.user import User
 class ListWindow(Screen):
     toPrint: str = StringProperty()
     userPoints: str = StringProperty()
+    history: str = StringProperty()
+    header: str = StringProperty()
 
     def __init__(self, **kwargs):
         super(ListWindow, self).__init__(**kwargs)
         self.toPrint: str = printList(user, False)
         self.taskStatus: bool = False
         self.userPoints: str = str(user.points)
+        self.history: str = "HISTORY"
+        self.header: str = "Your to do list"
 
-    def play_2048(self):
-        print(f'Play 2048')
+    def on_enter(self):
+        self.userPoints: str = str(user.points)
 
-    def view_history(self):
+    def view_history(self) -> None:
         self.taskStatus = not self.taskStatus
         self.toPrint = printList(user, self.taskStatus)
+        if self.history == "HISTORY":
+            self.history = "TO DO LIST"
+            self.header = "Your completed tasks"
+        else:
+            self.history = "HISTORY"
+            self.header = "Your to do list"
 
-    def add_task(self, name: str, date: str):
+    def add_task(self, name: str, date: str) -> None:
         user.list.add(name, date)
-        self.toPrint = printList(user, False)
-        print('Add task')
+        self.taskStatus = False
+        self.toPrint = printList(user, self.taskStatus)
+        self.history = "HISTORY"
+        self.header = "Your to do list"
 
-    def buy_item(self):
-        print('Buy item')
-
-    def complete_task(self, task_id, task_not_found):
-        if int(task_id.text) < 0 or not user.list.get_task(int(task_id.text)):
-            task_not_found.text = 'Task not found'
+    def complete_task(self, task_id, task_not_found) -> None:
+        if len(task_id.text) == 0:
+            task_not_found.text = 'task id field cannot be empty'
+        elif int(task_id.text) < 0 or not user.list.get_task(int(task_id.text)):
+            task_not_found.text = 'task not found'
         elif user.list.get_task(int(task_id.text)).is_done:
             task_not_found.text = 'Task is already done'
         else:
             user.list.complete_task(int(task_id.text))
             task_not_found.text = ''
-            self.toPrint = printList(user, True)
+            self.taskStatus = True
+            self.toPrint = printList(user, self.taskStatus)
             user.add_points(user.list.get_task(int(task_id.text)).points)
             self.userPoints: str = str(user.points)
+            self.history = "TO DO LIST"
+            self.header = "Your completed tasks"
 
-    def prepare_task(self, name, date, warning):
-        def check_date(date: str) -> bool:  # do utils
+    def prepare_task(self, name, date, warning) -> None:
+        def check_date(date: str) -> bool:
             x = re.match("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-5][0-9]:[0-5][0-9]$", date)
             if x:
                 splited = date.split("-")
@@ -80,9 +94,7 @@ def printList(user: User, is_done: bool) -> str:
     output = ""
     for elem in user.list.tasks.values():
         if elem.is_done == is_done:
-            output += "Task: "
-            output += str(elem.name)
-            output += "\n"
+            output += f'[{elem.id}] {elem.name}, complete until: {elem.deadline}\n'
     return output
 
 
