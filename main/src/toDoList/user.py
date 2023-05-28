@@ -3,10 +3,12 @@ from main.src.game.map import GameMap
 from main.src.game.constants import GameConstants
 
 class User:
-    def __init__(self, name: str):
+    def __init__(self, name: str, game: GameMap = None):
         self.name = name
         self.list = ToDoList()
-        self.game = GameMap()
+        if game is None:
+            self.game = GameMap()
+        else: self.game=game
         self.points: int = 0
 
     def add_points(self, amount: int):
