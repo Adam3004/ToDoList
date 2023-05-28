@@ -65,13 +65,13 @@ class GameMap:
         return True
 
     def can_make_move(self, x, y):
-        if x - 1 >= 0 and self.blocks[x][y] == self.blocks[x - 1][y]:
+        if x - 1 >= 0 and self.blocks[x][y].numeber == self.blocks[x - 1][y].number:
             return True
-        elif x + 1 < 4 and self.blocks[x][y] == self.blocks[x + 1][y]:
+        elif x + 1 < 4 and self.blocks[x][y].number == self.blocks[x + 1][y].number:
             return True
-        elif y - 1 >= 0 and self.blocks[x][y] == self.blocks[x][y - 1]:
+        elif y - 1 >= 0 and self.blocks[x][y].number == self.blocks[x][y - 1].number:
             return True
-        elif y + 1 < 4 and self.blocks[x][y] == self.blocks[x][y + 1]:
+        elif y + 1 < 4 and self.blocks[x][y].number == self.blocks[x][y + 1].number:
             return True
         return False
 

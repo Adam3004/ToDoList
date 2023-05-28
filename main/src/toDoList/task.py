@@ -14,7 +14,6 @@ class Task:
 
     def complete_task(self) -> None:
         self.is_done = True
-        print(f'Task {self.name} is completed')
 
     def __str__(self):
         return f"ID: {self.id}, name: {self.name}, is done {self.is_done}, deadline until {self.deadline}, points: {self.points}"

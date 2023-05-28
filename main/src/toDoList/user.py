@@ -16,7 +16,6 @@ class User:
 
     def add_points(self, amount: int):
         self.points += amount
-        print("Points added")
 
     def change_theme(self, theme):
         self.game.theme = theme

@@ -1,6 +1,8 @@
+from kivy.config import Config
+Config.set('graphics', 'resizable', '0')
+
 import re
 from datetime import datetime
-from kivy.config import Config
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -10,9 +12,6 @@ from kivy.properties import StringProperty
 from main.src.game.constants import GameConstants
 from main.src.game.direction import Direction
 from main.src.toDoList.user import User
-
-Config.set('graphics', 'resizable', '0')
-
 
 class ListWindow(Screen):
     toPrint: str = StringProperty()
@@ -117,6 +116,7 @@ class GameWindow(Screen):
 
     def on_enter(self):
         self.update_points()
+        self.update_change_theme_button(self.ids.spinner_id.text)
         Window.bind(on_key_down=self._on_keyboard_down)
         if user.have_deadlines():
             self.instructions = 'Complete tasks before!'
@@ -127,9 +127,6 @@ class GameWindow(Screen):
 
     def on_leave(self):
         Window.unbind(on_key_down=self._on_keyboard_down)
-
-    def _keyboard_closed(self):
-        print('Keyboard have been closed!')
 
     def _on_keyboard_down(self, window, key, scancode, keycode, modifiers):
         if not user.have_deadlines():
