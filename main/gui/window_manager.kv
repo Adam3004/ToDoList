@@ -45,11 +45,7 @@ WindowManager:
                 spacing: 10
                 name: name
                 date: date
-#                warning: warning
-                Label:
-                    text: 'Add new task'
-                    font_size: 20
-                    bold: True
+                warning: warning
                 TextInput:
                     id: name
                     hint_text:'Enter name'
@@ -64,7 +60,7 @@ WindowManager:
                     id: f_but
                     size_hint: None, None
                     size: 200, 30
-                    text: 'ADD'
+                    text: 'ADD NEW TASK'
                     background_normal:''
                     background_color: (0.208, 0.373, 0.616,1)
                     on_press: root.prepare_task(name, date, warning)
@@ -83,7 +79,6 @@ WindowManager:
                 size_hint: None, None
                 id: checkTaskBackG
                 orientation: 'vertical'
-#                auto_dismiss: False
                 task_not_found: task_not_found
                 BoxLayout:
                     orientation: 'horizontal'
