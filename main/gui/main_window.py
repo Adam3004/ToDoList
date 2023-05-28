@@ -116,6 +116,7 @@ class GameWindow(Screen):
 
     def on_enter(self):
         self.update_points()
+        self.update_change_theme_button(self.ids.spinner_id.text)
         Window.bind(on_key_down=self._on_keyboard_down)
         if user.have_deadlines():
             self.instructions = 'Complete tasks before!'
@@ -126,9 +127,6 @@ class GameWindow(Screen):
 
     def on_leave(self):
         Window.unbind(on_key_down=self._on_keyboard_down)
-
-    def _keyboard_closed(self):
-        print('Keyboard have been closed!')
 
     def _on_keyboard_down(self, window, key, scancode, keycode, modifiers):
         if not user.have_deadlines():
