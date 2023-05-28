@@ -53,6 +53,8 @@ class ListWindow(Screen):
     def complete_task(self, task_id, task_not_found) -> None:
         if len(task_id.text) == 0:
             task_not_found.text = 'task id field cannot be empty'
+        elif not task_id.text.isdigit():
+            task_not_found.text = 'id must be a number'
         elif int(task_id.text) < 0 or not user.list.get_task(int(task_id.text)):
             task_not_found.text = 'task not found'
         elif user.list.get_task(int(task_id.text)).is_done:
@@ -123,12 +125,12 @@ class GameWindow(Screen):
         else:
             self.instructions = 'Beat 2048 to win!'
             self.info = 'use w, s, a, d to play'
+
     def on_leave(self):
         Window.unbind(on_key_down=self._on_keyboard_down)
 
     def _keyboard_closed(self):
         print('Keyboard have been closed!')
-
 
     def _on_keyboard_down(self, window, key, scancode, keycode, modifiers):
         if not user.have_deadlines():
@@ -151,7 +153,7 @@ class GameWindow(Screen):
                 self.instructions = 'You have lost :(( Try again'
                 self.info = ''
         else:
-            self.instructions='Complete tasks before!'
+            self.instructions = 'Complete tasks before!'
 
     def new_game(self):
         self.instructions = 'Beat 2048 to win!'
