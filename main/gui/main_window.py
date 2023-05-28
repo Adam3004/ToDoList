@@ -1,10 +1,6 @@
 import re
 from datetime import datetime
-
 from kivy.config import Config
-
-Config.set('graphics', 'resizable', '0')
-
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -14,6 +10,8 @@ from kivy.properties import StringProperty
 from main.src.game.constants import GameConstants
 from main.src.game.direction import Direction
 from main.src.toDoList.user import User
+
+Config.set('graphics', 'resizable', '0')
 
 
 class ListWindow(Screen):
@@ -77,17 +75,18 @@ class ListWindow(Screen):
                 if int(splited[1]) <= 12:
                     splited = splited[2].split(" ")
                     if int(splited[0]) <= 31:
-                        splited = splited[0].split(":")
+                        splited = splited[1].split(":")
                         if int(splited[0]) <= 24:
-                            return datetime.strptime(date, '%Y-%m-%d %H:%M:%S') > datetime.now()
+                            return True
             return False
 
         if len(name.text) == 0:
             warning.text = 'Name field cannot be empty'
         elif len(date.text) == 0 or not check_date(date.text):
             warning.text = 'Wrong data format! \nyyyy-mm-dd hh:mm:ss'
+        elif datetime.strptime(date.text, '%Y-%m-%d %H:%M:%S') < datetime.now():
+            warning.text = 'Deadline cannot be in the past'
         else:
-            print(f'text input text is: {name.text}, date {date.text}')
             warning.text = ''
             self.add_task(name.text, date.text)
 
@@ -96,7 +95,7 @@ def printList(user: User, is_done: bool) -> str:
     output = ""
     for elem in user.list.tasks.values():
         if elem.is_done == is_done:
-            output += f'[{elem.id}] {elem.name}, complete until: {elem.deadline}\n'
+            output += f'[{elem.id}] {elem.name}, {elem.deadline}\n'
     return output
 
 

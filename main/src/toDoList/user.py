@@ -1,6 +1,7 @@
 from .toDoList import ToDoList
 from main.src.game.map import GameMap
 from main.src.game.constants import GameConstants
+from datetime import datetime
 
 
 class User:
@@ -33,6 +34,6 @@ class User:
 
     def have_deadlines(self) -> bool:
         for elem in self.list.tasks.values():
-            if not elem.is_done:
+            if not elem.is_done and datetime.now() > elem.deadline:
                 return True
         return False

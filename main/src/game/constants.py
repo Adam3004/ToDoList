@@ -1,5 +1,5 @@
 class GameConstants():
-    themes_available = {"default":0,
+    themes_available = {"default": 0,
                         "cats": 20,
                         "doggo": 50,
                         "fish": 75,

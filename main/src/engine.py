@@ -1,12 +1,10 @@
 from main.gui.main_window import runGui
-from main.src.utils.reader import read_list_for_user
-from main.src.utils.reader import read_game_status
-from main.src.utils.writer import write_user
-from main.src.utils.writer import write_game_status
 from main.src.game.map import GameMap
+from main.src.utils.reader import read_game_status
+from main.src.utils.reader import read_list_for_user
+from main.src.utils.writer import write_game_status
+from main.src.utils.writer import write_user
 from toDoList.user import User
-
-from main.src.game.block import GameBlock
 
 if __name__ == '__main__':
     tmp_list = []
