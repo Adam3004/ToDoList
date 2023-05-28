@@ -14,10 +14,11 @@ class User:
         print("Points added")
     def change_theme(self, theme):
         self.game.theme = theme
-        self.points -= GameConstants().theme_cost
+        self.points -= GameConstants().themes_available[theme]
 
     def can_change_theme(self, theme):
-        return not(theme==self.game.theme or self.points<GameConstants().theme_cost) and theme in GameConstants().themes_available
+        return theme in GameConstants().themes_available.keys() and not (
+                    theme == self.game.theme or self.points < GameConstants().themes_available[theme])
     def add_task(self, name, date):
         self.list.add(name, date)
 

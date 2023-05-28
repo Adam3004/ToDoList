@@ -1,4 +1,9 @@
 class GameConstants():
-    themes_available = ["default", "cats", "doggo", "fish", "food", "scooby", "spiderman"]
-    theme_cost = [0, 20, 50, 75, 100, 125, 175]
-    # TODO przerobic na slownik moze i poprawic w main widow
+    themes_available = {"default":0,
+                        "cats": 20,
+                        "doggo": 50,
+                        "fish": 75,
+                        "food": 100,
+                        "scooby": 125,
+                        "spiderman": 175
+                        }
