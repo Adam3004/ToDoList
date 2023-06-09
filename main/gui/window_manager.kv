@@ -2,9 +2,93 @@
 
 WindowManager:
     transition: NoTransition()
+    LoginWindow:
     ListWindow:
     GameWindow:
 
+<LoginWindow>:
+    name: "login"
+    canvas.before:
+        Color:
+            rgb: (0.471, 0.412, 0.506)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        Widget:
+            size_hint: None, None
+            size: 100, 300
+        BoxLayout:
+            orientation: "horizontal"
+            padding: 100
+            spacing: 0
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 20
+                Label:
+                    text: 'Create new account'
+                    font_size: 20
+                    bold: True
+                TextInput:
+                    id: newlogin
+                    multiline: False
+                    hint_text:'Enter login'
+                    size_hint: None, None
+                    size: 250,30
+                TextInput:
+                    id: newpassword
+                    multiline: False
+                    hint_text:'Enter password'
+                    size_hint: None, None
+                    size: 250,30
+                Button:
+                    text: 'REGISTER'
+                    font_size: 16
+                    size_hint: None, None
+                    size: 250, 30
+                    background_normal:''
+                    background_color: (0.282, 0.208, 0.322,1)
+                    on_release:
+                        root.register(newlogin, newpassword)
+            Widget:
+                size_hint: None, None
+                size: 100, 50
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 20
+                Label:
+                    text: 'Log into your account'
+                    font_size: 20
+                    bold: True
+                TextInput:
+                    id: login
+                    multiline: False
+                    hint_text:'Enter login'
+                    size_hint: None, None
+                    size: 250,30
+                TextInput:
+                    id: password
+                    multiline: False
+                    hint_text:'Enter password'
+                    size_hint: None, None
+                    size: 250,30
+                Button:
+                    text: 'LOG IN'
+                    font_size: 16
+                    size_hint: None, None
+                    size: 250, 30
+                    background_normal:''
+                    background_color: (0.184, 0.192, 0.376,1)
+                    on_press: root.login(login, password)
+        Label:
+            text: root.warning
+            font_size: 16
+            bold: True
+            color: (0.499, 0.073, 0.016,1)
+
+
+            
 <ListWindow>:
     name: "list"
     canvas.before:
@@ -57,11 +141,13 @@ WindowManager:
                 spacing: 10
                 TextInput:
                     id: name
+                    multiline: False
                     hint_text:'Enter name'
                     size_hint: None, None
                     size: 200,30
                 TextInput:
                     id: date
+                    multiline: False
                     hint_text:'Enter deadline'
                     size_hint: None, None
                     size: 200,30
@@ -100,6 +186,7 @@ WindowManager:
                     orientation: 'horizontal'
                     TextInput:
                         id: task_id
+                        multiline: False
                         hint_text:'Task id'
                         size_hint: None, None
                         size: 150,30
