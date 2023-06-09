@@ -50,17 +50,18 @@ class LoginHandler:
             except sql.IntegrityError:
                 raise RegistrationException("this login is not available")
 
-    def save(self, user: User):
-        statement = f"SELECT password from users WHERE username='{user.name}';"
-        self.cur.execute(statement)
-        password = self.cur.fetchone()[0]
-        statement = f"DELETE FROM users WHERE username='{user.name}';"
-        self.cur.execute(statement)
-        statement = "INSERT INTO users (username, password, points, theme, gamestatus) VALUES (?, ?, ?, ?, ?)"
-        self.cur.execute(statement,
-                         (user.name, password, user.points, user.game.theme, save_gamestatus(user.game.blocks)))
-        self.con.commit()
-        write_tasks(user)
+    def save(self, user: User = None):
+        if user is not None:
+            statement = f"SELECT password from users WHERE username='{user.name}';"
+            self.cur.execute(statement)
+            password = self.cur.fetchone()[0]
+            statement = f"DELETE FROM users WHERE username='{user.name}';"
+            self.cur.execute(statement)
+            statement = "INSERT INTO users (username, password, points, theme, gamestatus) VALUES (?, ?, ?, ?, ?)"
+            self.cur.execute(statement,
+                             (user.name, password, user.points, user.game.theme, save_gamestatus(user.game.blocks)))
+            self.con.commit()
+            write_tasks(user)
 
     def disconnect(self):
         self.con.commit()

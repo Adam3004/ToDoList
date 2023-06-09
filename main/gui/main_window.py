@@ -231,4 +231,5 @@ def save_and_exit(*args):
 
 def runGui():
     global user
+    user=None
     ToDo2048App().run()
