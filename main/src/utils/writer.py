@@ -5,7 +5,8 @@ from main.src.game.block import GameBlock
 from main.src.toDoList.user import User
 
 def write_tasks(user: User) -> None:
-    file_to_open: str = f'..\\resources\\toDoLists\\{user.name}.csv'
+    """saving user's tasks to csv file"""
+    file_to_open: str = f'.\\resources\\toDoLists\\{user.name}.csv'
 
     with open(file_to_open, 'w', newline='') as file:
         csv_writer = csv.writer(file)
@@ -14,7 +15,7 @@ def write_tasks(user: User) -> None:
             csv_writer.writerow([task.name, task.is_done, task.deadline, task.points])
 
 def write_user(user: User) -> None:
-    file_to_open: str = f'..\\resources\\toDoLists\\{user.name}.csv'
+    file_to_open: str = f'.\\resources\\toDoLists\\{user.name}.csv'
 
     with open(file_to_open, 'w', newline='') as file:
         csv_writer = csv.writer(file)
@@ -25,7 +26,7 @@ def write_user(user: User) -> None:
 
 
 def write_game_status(list_of_blocks: list[list[GameBlock]], theme: str) -> None:
-    file_to_open: str = '..\\resources\\toDoLists\\gameStatus.csv'
+    file_to_open: str = '.\\resources\\toDoLists\\gameStatus.csv'
 
     with open(file_to_open, 'w', newline='') as file:
         csv_writer = csv.writer(file)

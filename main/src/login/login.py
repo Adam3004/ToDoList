@@ -17,14 +17,16 @@ class RegistrationException(Exception):
 
 
 class LoginHandler:
+    """handiling logging and regitering to users database"""
     def __init__(self):
-        self.con = sql.connect("../resources/users.db")
+        self.con = sql.connect("./resources/users.db")
         self.cur = self.con.cursor()
-        # statement = "SELECT username, password FROM users"
+        # statement = f"SELECT * from users ;"
         # self.cur.execute(statement)
         # print(self.cur.fetchall())
 
     def log(self, login: str, password: str):
+        """handling logging into database, returning User"""
         statement = f"SELECT * from users WHERE username='{login}' AND Password = '{password}';"
         self.cur.execute(statement)
         user_data = self.cur.fetchone()
@@ -38,6 +40,7 @@ class LoginHandler:
             return user
 
     def register(self, login: str, password: str):
+        """handling registering into database"""
         if login == "":
             raise RegistrationException("try different login")
         elif password == "":
@@ -51,6 +54,7 @@ class LoginHandler:
                 raise RegistrationException("this login is not available")
 
     def save(self, user: User = None):
+        """saving changes of User parameters to database"""
         if user is not None:
             statement = f"SELECT password from users WHERE username='{user.name}';"
             self.cur.execute(statement)
@@ -64,5 +68,6 @@ class LoginHandler:
             write_tasks(user)
 
     def disconnect(self):
+        """commiting changes and disconnecting from database"""
         self.con.commit()
         self.con.close()
