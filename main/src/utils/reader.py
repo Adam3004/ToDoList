@@ -5,6 +5,7 @@ from main.src.toDoList.task import Task
 from main.src.toDoList.user import User
 from main.src.game.block import GameBlock
 
+
 def read_tasks(user: User) -> None:
     """reading user's tasks from csv file"""
     file_to_open: str = f'.\\resources\\toDoLists\\{user.name}.csv'
@@ -16,7 +17,9 @@ def read_tasks(user: User) -> None:
     except FileNotFoundError:
         user.list.clear()
 
+
 def read_list_for_user(user: User) -> int:
+    """ reading list of task for user from csv"""
     file_to_open: str = f'.\\resources\\toDoLists\\{user.name}.csv'
     i: int = 0
     points = 0
@@ -32,6 +35,7 @@ def read_list_for_user(user: User) -> int:
 
 
 def read_game_status(list_of_blocks: list) -> str:
+    """reading game status from csv"""
     file_to_open: str = '.\\resources\\toDoLists\\gameStatus.csv'
 
     with open(file_to_open, 'r') as file:

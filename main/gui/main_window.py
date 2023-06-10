@@ -1,7 +1,5 @@
-from kivy.config import Config
-Config.set('graphics', 'resizable', '0')
-
 import re
+from kivy.config import Config
 from datetime import datetime
 from kivy.app import App
 from kivy.lang import Builder
@@ -14,17 +12,21 @@ from main.src.game.direction import Direction
 from main.src.toDoList.user import User
 from main.src.login.login import LoginHandler, LoginException, RegistrationException
 
+Config.set('graphics', 'resizable', '0')
+
+
 class LoginWindow(Screen):
     warning = StringProperty()
+
     def __init__(self, **kwargs):
         super(LoginWindow, self).__init__(**kwargs)
-        self.warning=""
+        self.warning = ""
         self.handler = LoginHandler()
 
-    def on_leave(self):
+    def on_leave(self) -> None:
         self.handler.disconnect()
 
-    def login(self, login, password):
+    def login(self, login, password) -> None:
         try:
             global user
             user = self.handler.log(login.text, password.text)
@@ -33,12 +35,13 @@ class LoginWindow(Screen):
         except LoginException as e:
             self.warning = str(e)
 
-    def register(self, login, password):
+    def register(self, login, password) -> None:
         try:
             self.handler.register(login.text, password.text)
             self.warning = "Sucessfully registered!"
         except RegistrationException as e:
             self.warning = str(e)
+
 
 class ListWindow(Screen):
     toPrint: str = StringProperty()
@@ -50,7 +53,7 @@ class ListWindow(Screen):
         super(ListWindow, self).__init__(**kwargs)
         Window.bind(on_request_close=save_and_exit)
 
-    def on_enter(self):
+    def on_enter(self) -> None:
         self.userPoints: str = str(user.points)
         self.toPrint: str = printList(user, False)
         self.taskStatus: bool = False
@@ -137,12 +140,12 @@ class GameWindow(Screen):
         super(GameWindow, self).__init__(**kwargs)
         Window.bind(on_request_close=save_and_exit)
 
-    def on_kv_post(self, base_widget):
-        #self.render_gameview()
+    def on_kv_post(self, base_widget) -> None:
+        # self.render_gameview()
         self.ids.spinner_id.values = GameConstants().themes_available.keys()
-        #self.update_points()
+        # self.update_points()
 
-    def on_enter(self):
+    def on_enter(self) -> None:
         self.update_points()
         self.render_gameview()
         self.update_change_theme_button(self.ids.spinner_id.text)
@@ -154,10 +157,10 @@ class GameWindow(Screen):
             self.instructions = 'Beat 2048 to win!'
             self.info = 'use w, s, a, d to play'
 
-    def on_leave(self):
+    def on_leave(self) -> None:
         Window.unbind(on_key_down=self._on_keyboard_down)
 
-    def _on_keyboard_down(self, window, key, scancode, keycode, modifiers):
+    def _on_keyboard_down(self, window, key, scancode, keycode, modifiers) -> None:
         if not user.have_deadlines():
             if not (user.game.won() or user.game.lost()):
                 if keycode == 'w':
@@ -180,35 +183,35 @@ class GameWindow(Screen):
         else:
             self.instructions = 'Complete tasks before!'
 
-    def new_game(self):
+    def new_game(self) -> None:
         self.instructions = 'Beat 2048 to win!'
         self.info = 'use w, s, a, d to play'
         user.game.new_game()
         self.render_gameview()
 
-    def render_gameview(self):
+    def render_gameview(self) -> None:
         self.ids.grid.clear_widgets()
         for i in range(16):
             self.ids.grid.add_widget(Image(source=user.game.get_pic_path(i % 4, i // 4)))
 
-    def spinner_clicked(self, value):
+    def spinner_clicked(self, value) -> None:
         self.ids.spinner_id.text = value
         self.update_change_theme_button(value)
         self.points_cost = str(GameConstants().themes_available[value])
 
-    def update_points(self):
+    def update_points(self) -> None:
         self.points_cnt = str(user.points)
 
-    def update_change_theme_button(self, theme):
+    def update_change_theme_button(self, theme) -> None:
         button = self.ids.change_button
         if not user.can_change_theme(theme):
-            button.background_color = (0.024, 0.024, 0.106,1)
+            button.background_color = (0.024, 0.024, 0.106, 1)
             button.strikethrough = True
         else:
-            button.background_color = (0.184, 0.192, 0.376,1)
+            button.background_color = (0.184, 0.192, 0.376, 1)
             button.strikethrough = False
 
-    def change_theme(self):
+    def change_theme(self) -> None:
         theme = self.ids.spinner_id.text
         if user.can_change_theme(theme):
             user.change_theme(theme)
@@ -225,11 +228,13 @@ class ToDo2048App(App):
     def build(self):
         return Builder.load_file("../gui/window_manager.kv")
 
+
 def save_and_exit(*args):
     LoginHandler().save(user)
     return False
 
+
 def runGui():
     global user
-    user=None
+    user = None
     ToDo2048App().run()
