@@ -6,6 +6,7 @@ class ToDoList:
     def __init__(self):
         self.tasks: Dict[int, Task] = {}
 
+    # add task
     def add(self, name: str, date: str) -> None:
         task = Task(name, date)
         self.tasks[task.id] = task
@@ -13,7 +14,8 @@ class ToDoList:
     def clear(self) -> None:
         self.tasks.clear()
 
-    def load_task(self, task: Task):
+    # loading task (for example while reading from csv)
+    def load_task(self, task: Task) -> None:
         self.tasks[task.id] = task
 
     def __is_elem_in_list(self, elem: Task) -> bool:

@@ -14,18 +14,18 @@ class User:
             self.game = game
         self.points: int = points
 
-    def add_points(self, amount: int):
+    def add_points(self, amount: int) -> None:
         self.points += amount
 
-    def change_theme(self, theme):
+    def change_theme(self, theme) -> None:
         self.game.theme = theme
         self.points -= GameConstants().themes_available[theme]
 
-    def can_change_theme(self, theme):
+    def can_change_theme(self, theme) -> bool:
         return theme in GameConstants().themes_available.keys() and not (
                 theme == self.game.theme or self.points < GameConstants().themes_available[theme])
 
-    def add_task(self, name, date):
+    def add_task(self, name, date) -> None:
         self.list.add(name, date)
 
     def __str__(self):

@@ -2,31 +2,35 @@ from main.src.game.block import GameBlock
 from random import sample
 from main.src.game.direction import Direction
 
+
 def render_gamestatus(saved_status):
-    first=0
-    blocks_1d=[]
+    first = 0
+    blocks_1d = []
     for i, char in enumerate(saved_status):
-        if char=="$":
-            if i-first==0:
+        if char == "$":
+            if i - first == 0:
                 blocks_1d.append(None)
             else:
                 blocks_1d.append(GameBlock(int(saved_status[first:i])))
-            first=i+1
-    if len(blocks_1d)!=16:
+            first = i + 1
+    if len(blocks_1d) != 16:
         raise Exception("couldn't render gamestatus")
-    return [[blocks_1d[j*4+i] for i in range(4)] for j in range(4)]
+    return [[blocks_1d[j * 4 + i] for i in range(4)] for j in range(4)]
+
 
 def save_gamestatus(blocks):
-    status=""
+    status = ""
     for row in blocks:
         for block in row:
             if block is not None:
-                status=status+str(block.number)
+                status = status + str(block.number)
             status = status + "$"
     return status
 
+
 class GameMap:
     """This class implements game 2048"""
+
     def __init__(self, theme: str = "default", blocks=None):
         self.theme = theme
         self.empty_fields = 0
@@ -119,6 +123,7 @@ class GameMap:
 
     def move(self, direction: Direction):
         """"making a move up, down, right or left"""
+
         def transpose():
             new = [[self.blocks[c][r] for c in range(4)] for r in range(4)]
             self.blocks = new

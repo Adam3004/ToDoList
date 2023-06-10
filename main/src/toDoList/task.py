@@ -3,6 +3,7 @@ import itertools
 
 
 class Task:
+    # auto incrementing id for new tasks
     newid = itertools.count()
 
     def __init__(self, name: str, deadline, isDone: bool = False, pointsAmount: int = 5):
