@@ -10,6 +10,9 @@ class ToDoList:
         task = Task(name, date)
         self.tasks[task.id] = task
 
+    def clear(self) -> None:
+        self.tasks.clear()
+
     def load_task(self, task: Task):
         self.tasks[task.id] = task
 

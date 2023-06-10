@@ -12,6 +12,33 @@ from kivy.properties import StringProperty
 from main.src.game.constants import GameConstants
 from main.src.game.direction import Direction
 from main.src.toDoList.user import User
+from main.src.login.login import LoginHandler, LoginException, RegistrationException
+
+class LoginWindow(Screen):
+    warning = StringProperty()
+    def __init__(self, **kwargs):
+        super(LoginWindow, self).__init__(**kwargs)
+        self.warning=""
+        self.handler = LoginHandler()
+
+    def on_leave(self):
+        self.handler.disconnect()
+
+    def login(self, login, password):
+        try:
+            global user
+            user = self.handler.log(login.text, password.text)
+            self.warning = ""
+            self.manager.current = 'list'
+        except LoginException as e:
+            self.warning = str(e)
+
+    def register(self, login, password):
+        try:
+            self.handler.register(login.text, password.text)
+            self.warning = "Sucessfully registered!"
+        except RegistrationException as e:
+            self.warning = str(e)
 
 class ListWindow(Screen):
     toPrint: str = StringProperty()
@@ -21,14 +48,15 @@ class ListWindow(Screen):
 
     def __init__(self, **kwargs):
         super(ListWindow, self).__init__(**kwargs)
+        Window.bind(on_request_close=save_and_exit)
+
+    def on_enter(self):
+        self.userPoints: str = str(user.points)
         self.toPrint: str = printList(user, False)
         self.taskStatus: bool = False
         self.userPoints: str = str(user.points)
         self.history: str = "HISTORY"
         self.header: str = "Your to do list"
-
-    def on_enter(self):
-        self.userPoints: str = str(user.points)
 
     def view_history(self) -> None:
         self.taskStatus = not self.taskStatus
@@ -107,15 +135,16 @@ class GameWindow(Screen):
 
     def __init__(self, **kwargs):
         super(GameWindow, self).__init__(**kwargs)
-        Window.bind(on_key_down=self._on_keyboard_down)
+        Window.bind(on_request_close=save_and_exit)
 
     def on_kv_post(self, base_widget):
-        self.render_gameview()
+        #self.render_gameview()
         self.ids.spinner_id.values = GameConstants().themes_available.keys()
-        self.update_points()
+        #self.update_points()
 
     def on_enter(self):
         self.update_points()
+        self.render_gameview()
         self.update_change_theme_button(self.ids.spinner_id.text)
         Window.bind(on_key_down=self._on_keyboard_down)
         if user.have_deadlines():
@@ -196,8 +225,11 @@ class ToDo2048App(App):
     def build(self):
         return Builder.load_file("../gui/window_manager.kv")
 
+def save_and_exit(*args):
+    LoginHandler().save(user)
+    return False
 
-def runGui(currUser: User):
+def runGui():
     global user
-    user = currUser
+    user=None
     ToDo2048App().run()
