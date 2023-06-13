@@ -1,7 +1,6 @@
 import sqlite3 as sql
 from main.src.toDoList.user import User
-from main.src.game.map import GameMap
-from main.src.game.map import render_gamestatus, save_gamestatus
+from main.src.game.map import GameMap, render_gamestatus, save_gamestatus, GameStatusException
 from main.src.utils.writer import write_tasks
 from main.src.utils.reader import read_tasks
 
@@ -33,8 +32,11 @@ class LoginHandler:
         if not user_data:
             raise LoginException("wrong login or password")
         else:
-            blocks = render_gamestatus(user_data[4])
-            game = GameMap(theme=user_data[3], blocks=blocks)
+            try:
+                blocks = render_gamestatus(user_data[4])
+                game = GameMap(theme=user_data[3], blocks=blocks)
+            except GameStatusException:
+                game=GameMap()
             user = User(login, points=user_data[2], game=game)
             read_tasks(user)
             return user

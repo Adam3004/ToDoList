@@ -3,7 +3,7 @@ from random import sample
 from main.src.game.direction import Direction
 
 class GameStatusException(Exception):
-    """Raised when there is incorrect login or password entered"""
+    """Raised when there is problem with rendering game status"""
     pass
 
 def render_gamestatus(saved_status):
