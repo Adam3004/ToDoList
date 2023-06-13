@@ -2,6 +2,9 @@ from main.src.game.block import GameBlock
 from random import sample
 from main.src.game.direction import Direction
 
+class GameStatusException(Exception):
+    """Raised when there is incorrect login or password entered"""
+    pass
 
 def render_gamestatus(saved_status):
     first = 0
@@ -14,7 +17,7 @@ def render_gamestatus(saved_status):
                 blocks_1d.append(GameBlock(int(saved_status[first:i])))
             first = i + 1
     if len(blocks_1d) != 16:
-        raise Exception("couldn't render gamestatus")
+        raise GameStatusException("couldn't render gamestatus")
     return [[blocks_1d[j * 4 + i] for i in range(4)] for j in range(4)]
 
 
